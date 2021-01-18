@@ -1,4 +1,4 @@
-package com.dyzwj.consumerhellohystrixfeign.feign;
+package com.dyzwj.consumerhellohystrixfeign.Feign;
 
 import com.dyzwj.consumerhellohystrixfeign.bean.User;
 import org.springframework.stereotype.Component;

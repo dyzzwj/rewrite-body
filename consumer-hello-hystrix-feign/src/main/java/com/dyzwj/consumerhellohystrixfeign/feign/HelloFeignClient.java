@@ -1,6 +1,7 @@
-package com.dyzwj.consumerhellohystrixfeign.feign;
+package com.dyzwj.consumerhellohystrixfeign.Feign;
 
 import com.dyzwj.consumerhellohystrixfeign.bean.User;
+import feign.QueryMap;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,10 +16,10 @@ import java.util.Map;
  */
 
 @FeignClient(name = "producer-hello",fallback = HelloHystrixFeignClient.class,path = "/hello")
-//@RequestMapping("/hello")   <==> path = "/hello"
+//@RequestMapping("/hello")
 public interface HelloFeignClient {
 
-    @GetMapping("/")
+    @GetMapping("/hello")
     String hello(@RequestParam Map<String,String> param);
 
 

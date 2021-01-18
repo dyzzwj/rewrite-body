@@ -34,11 +34,16 @@ public class HelloService {
                         tmp = (Map<String, Object>) tmp.get(split[i]);
                     }
                 }
+
+
                 Object transform = transform(data, key);
                 if(transform instanceof List){
-
+                   List<Object> list = (List<Object>) transform;
+                    for (Object o : list) {
+                        tmp.putAll((Map<? extends String, ?>) o);
+                    }
                 }else {
-                    tmp.put(split[split.length - 2],transform);
+                    tmp.put(split[split.length - 1],transform);
                 }
 //                tmp.put(split[split.length - 1], transform(data, key));
             } else {
@@ -79,12 +84,14 @@ public class HelloService {
         List<Object> result = new ArrayList<>();
         for (int i = 0; i < jsonArr.size(); i++) {
             JSONObject jsonObj = jsonArr.getJSONObject(i);
-            Set<Map.Entry<String, Object>> entries = jsonObj.entrySet();
-            for (Map.Entry<String, Object> entry : entries) {
-                Object transform = transform(jsonObj, entry.getKey());
-                result.add(transform);
-            }
-//            result.add(transform(jsonObj, s));
+//            Set<Map.Entry<String, Object>> entries = jsonObj.entrySet();
+//            for (Map.Entry<String, Object> entry : entries) {
+//                Object transform = transform(jsonObj, entry.getKey());
+//                result.add(transform);
+//            }
+            Map<String,Object> map = new HashMap<>();
+            map.put(s,transform(jsonObj, s));
+            result.add(map);
         }
         return result;
     }
