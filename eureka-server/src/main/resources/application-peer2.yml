@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: eureka-server
+server:
+  port: 1112
+eureka:
+  instance:
+    hostname: peer2
+  client:
+    service-url:
+      defaultZone: http://peer1:1111/eureka/,http://peer3:1113/eureka/  #map类型 多个逗号隔开 指向peer1和peer3

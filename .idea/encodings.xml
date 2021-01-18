@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/consumer-hello-hystrix-feign" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/consumer-hello-hystrix-feign/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/consumer-hello-hystrix-ribbon" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/consumer-hello-hystrix-ribbon/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eureka-client" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eureka-client/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eureka-server" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/eureka-server/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/order-service/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/producer-hello" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/producer-hello/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/zuul-proxy/src/main/java" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

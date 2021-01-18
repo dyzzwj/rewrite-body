@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: producer-hello
+
+server:
+  port: 4444
+  servlet:
+    context-path: /hello
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    register-with-eureka: false
+    fetch-registry: false
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+    prefer-ip-address: true
+
+
