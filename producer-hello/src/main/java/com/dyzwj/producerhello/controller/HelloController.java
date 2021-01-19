@@ -6,6 +6,8 @@ import com.alibaba.fastjson.JSONObject;
 import com.dyzwj.producerhello.domain.User;
 import com.dyzwj.producerhello.feign.ProducerHelloFeignClient;
 import com.dyzwj.producerhello.service.HelloService;
+import com.dyzwj.producerhello.service.TransformService;
+import com.dyzwj.producerhello.service.TransformService3;
 import com.netflix.discovery.converters.Auto;
 import com.netflix.discovery.converters.JsonXStream;
 import com.oracle.jrockit.jfr.Producer;
@@ -66,6 +68,9 @@ public class HelloController {
         return "";
     }
 
+    @Autowired
+    TransformService3 transformService3;
+
     @PostMapping("/transform")
     public Map transform(@RequestBody Map param){
 
@@ -82,41 +87,45 @@ public class HelloController {
         JSONObject dataJsonObject = JSON.parseObject(data);
         String config = JSON.toJSONString(configObj);
         JSONObject configJsonObject = JSON.parseObject(config);
-
+        Map<String, Object> map = new HashMap<>();
+        transformService3.analysisJson2(JSON.parseObject(data), "", JSON.parseObject(config),map);
+        return map;
 
         //遍历配置
-        Set<Map.Entry<String, Object>> entries = configJsonObject.entrySet();
-        entries.forEach(entry -> {
-            String key = entry.getKey();
-            String value = (String) entry.getValue();
-            if(key.contains(".")){
-                String[] keyArr = key.split("\\.");
-                JSONObject tmp = dataJsonObject;
-                //user.name
-                for (String s : keyArr) {
-                    try{
-                        tmp = tmp.getJSONObject(s);
-                    }catch (Exception e1){
-                        try{
-                            JSONArray jsonArray = tmp.getJSONArray(s);
+//        Set<Map.Entry<String, Object>> entries = configJsonObject.entrySet();
+//        entries.forEach(entry -> {
+//            String key = entry.getKey();
+//            String value = (String) entry.getValue();
+//            if(key.contains(".")){
+//                String[] keyArr = key.split("\\.");
+//                JSONObject tmp = dataJsonObject;
+//                //user.name
+//                for (String s : keyArr) {
+//                    try{
+//                        tmp = tmp.getJSONObject(s);
+//                    }catch (Exception e1){
+//                        try{
+//                            JSONArray jsonArray = tmp.getJSONArray(s);
+//
+//                        }catch (Exception e2){
+//                            if(value.contains(".")){
+//                                String[] valueArr = value.split(".");
+//                            }else {
+//                                result.put(value,tmp.get(s));
+//                            }
+//                        }
+//
+//                    }
+//                }
+//            }else {
+//                result.put(value,dataJsonObject.get(key));
+//            }
+//
+//
+//        });
+//        return helloService.transform(dataJsonObject,configJsonObject);
 
-                        }catch (Exception e2){
-                            if(value.contains(".")){
-                                String[] valueArr = value.split(".");
-                            }else {
-                                result.put(value,tmp.get(s));
-                            }
-                        }
 
-                    }
-                }
-            }else {
-                result.put(value,dataJsonObject.get(key));
-            }
-
-
-        });
-        return helloService.transform(dataJsonObject,configJsonObject);
 
 //        return result;
     }

@@ -35,6 +35,7 @@ public class TransformService2 {
                 while (matcher.find()) {
                     //[0]
                     String group = matcher.group();
+
                     String _key = key.replace(group,"");
                     //查找包含[0]的key
                     List<String> collect = keySet.stream().filter(k -> k.contains(group)).collect(Collectors.toList());
